@@ -1,8 +1,9 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from 'react'
 
-export default function Sucesso() {
+function SucessoContent() {
   const searchParams = useSearchParams()
   const email = searchParams.get('email')
 
@@ -33,6 +34,14 @@ export default function Sucesso() {
         Falar no WhatsApp
       </button>
     </div>
+  )
+}
+
+export default function Sucesso() {
+  return (
+    <Suspense fallback={<div className="container">Carregando...</div>}>
+      <SucessoContent />
+    </Suspense>
   )
 }
 
